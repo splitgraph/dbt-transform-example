@@ -1,0 +1,23 @@
+repositories:
+  - namespace: splitgraph
+    repository: dbt-transform-example
+    external:
+      plugin: dbt
+      credential: dbt-transform-example
+      params:
+        sources:
+          - dbt_source_name: trase_supply_chains
+            namespace: trase
+            repository: supply-chains
+            hash_or_tag: latest
+        git_branch: main
+      is_live: false
+      tables: { }
+    metadata:
+      description: Example of a dbt transform on Splitgraph Cloud with Github Actions
+      readme:
+        text: |
+          # Example of a dbt transform on Splitgraph Cloud with Github Actions
+
+          This repository is built from https://github.com/splitgraph/dbt-transform-example and runs
+          a dbt model on [trase/supply-chains](/trase/supply-chains).

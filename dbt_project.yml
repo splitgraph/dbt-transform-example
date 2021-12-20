@@ -1,0 +1,29 @@
+name: 'dbt_transform_example'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+# Note that the Splitgraph runner overrides this at runtime, so this is only useful
+# if you are running a local Splitgraph engine and are developing this dbt model against it.
+profile: 'splitgraph'
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+models:
+  dbt_transform_example:
+    # Staging data (materialized as CTEs) that references the source Splitgraph repositories.
+    staging:
+      +materialized: ephemeral
+    # Intermediate data (CTEs)
+    intermediate:
+      +materialized: ephemeral
+    # Final model (table)
+    marts:
+      +materialized: table

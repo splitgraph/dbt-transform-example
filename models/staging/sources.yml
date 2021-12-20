@@ -1,0 +1,15 @@
+# This file defines all data sources referenced by this model. The mapping
+# between the data source name and the Splitgraph repository is in the settings of the dbt plugin
+# in splitgraph.yml (see params -> sources)
+version: 2
+sources:
+- name: trase_supply_chains
+  # Splitgraph will use a different temporary schema for this source by patching this project
+  # at runtime, so this is for informational purposes only.
+  schema: trase/supply-chains
+  tables:
+  - name: supply-chains
+- name: mildbyte_snowflake
+  schema: mildbyte/snowflake
+  tables:
+  - name: some_table

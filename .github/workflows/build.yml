@@ -1,0 +1,27 @@
+name: Build datasets on Splitgraph
+on: workflow_dispatch
+jobs:
+  splitgraph_dbt_transform_example:
+    name: Build splitgraph/dbt-transform-example
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Splitgraph
+      uses: splitgraph/setup-splitgraph@master
+      with:
+        splitgraph_deployment_url: splitgraph.com
+        splitgraph_api_key: ${{ secrets.SPLITGRAPH_API_KEY }}
+        splitgraph_api_secret: ${{ secrets.SPLITGRAPH_API_SECRET }}
+    - name: Set up dbt Git URL
+      run: sed -i "s|\$THIS_REPO_URL|https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY|g" splitgraph.credentials.yml
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Run sgr cloud sync to perform the data load
+      run: sgr cloud sync --remote splitgraph --use-file -f splitgraph.yml
+        -f splitgraph.credentials.yml --wait splitgraph/dbt-transform-example
+      shell: bash
+    - name: Run sgr cloud load to set up metadata
+      run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
+        splitgraph.credentials.yml splitgraph/dbt-transform-example
+      shell: bash
