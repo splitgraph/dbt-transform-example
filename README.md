@@ -36,6 +36,9 @@ file maps this data source to the dataset at https://splitgraph.com/trase/supply
     and set them up as GitHub Secrets:
     * `SPLITGRAPH_API_KEY`
     * `SPLITGRAPH_API_SECRET`
+  * Change `splitgraph/dbt-transform-example` in [`splitgraph.yml`](https://github.com/splitgraph/dbt-transform-example/blob/splitgraph.yml) 
+    and the [GitHub Action workflow file](https://github.com/splitgraph/dbt-transform-example/blob/main/.github/workflows/build.yml) 
+    to use your own username (e.g. `someuser/dbt-transform-example`)
   * Run the workflow manually
 
 ## Local development with the Splitgraph engine

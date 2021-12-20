@@ -18,7 +18,9 @@ repositories:
     metadata:
       description: Example of a dbt transform on Splitgraph Cloud with Github Actions
       readme:
-        file: ./README.md
+        # Minor hack since sgr expects readmes to live in ./readmes and we want to reuse
+        # the repository's README.
+        file: ../README.md
       extra_metadata:
         "dbt project":
           URL: https://github.com/splitgraph/dbt-transform-example
