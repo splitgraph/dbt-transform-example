@@ -14,14 +14,14 @@ https://splitgraph.com/splitgraph/dbt-transform-example.
 
 ## How it works
 
-  * The [dbt project](https://github.com/splitgraph/dbt-transform-example/blob/dbt_project.yml) 
+  * The [dbt project](https://github.com/splitgraph/dbt-transform-example/blob/main/dbt_project.yml) 
 defines a model that depends on a [source](https://github.com/splitgraph/dbt-transform-example/blob/main/models/staging/sources.yml#L6) named `trase_supply_chains`. 
-  * The [`splitgraph.yml`](https://github.com/splitgraph/dbt-transform-example/blob/splitgraph.yml) 
+  * The [`splitgraph.yml`](https://github.com/splitgraph/dbt-transform-example/blob/main/splitgraph.yml) 
 file maps this data source to the dataset at https://splitgraph.com/trase/supply-chains.
   * The [GitHub Action workflow](https://github.com/splitgraph/dbt-transform-example/blob/main/.github/workflows/build.yml) 
   generates a temporary clone link to this repository (using 
     [`$GITHUB_TOKEN`](https://docs.github.com/en/actions/security-guides/automatic-token-authentication))
-  and injects it into [`splitgraph.credentials.yml`](https://github.com/splitgraph/dbt-transform-example/blob/splitgraph.credentials.yml)
+  and injects it into [`splitgraph.credentials.yml`](https://github.com/splitgraph/dbt-transform-example/blob/main/splitgraph.credentials.yml)
   * It then runs `sgr cloud sync` with the `--wait` parameter to submit the 
     dbt model to Splitgraph Cloud and wait for it to complete.
   * Splitgraph Cloud alters the model to point to `trase/supply-chains` and 
@@ -36,7 +36,7 @@ file maps this data source to the dataset at https://splitgraph.com/trase/supply
     and set them up as GitHub Secrets:
     * `SPLITGRAPH_API_KEY`
     * `SPLITGRAPH_API_SECRET`
-  * Change `splitgraph/dbt-transform-example` in [`splitgraph.yml`](https://github.com/splitgraph/dbt-transform-example/blob/splitgraph.yml) 
+  * Change `splitgraph/dbt-transform-example` in [`splitgraph.yml`](https://github.com/splitgraph/dbt-transform-example/blob/main/splitgraph.yml) 
     and the [GitHub Action workflow file](https://github.com/splitgraph/dbt-transform-example/blob/main/.github/workflows/build.yml) 
     to use your own username (e.g. `someuser/dbt-transform-example`)
   * Run the workflow manually
