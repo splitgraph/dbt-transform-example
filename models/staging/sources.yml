@@ -9,7 +9,3 @@ sources:
   schema: trase/supply-chains
   tables:
   - name: supply-chains
-- name: mildbyte_snowflake
-  schema: mildbyte/snowflake
-  tables:
-  - name: some_table
