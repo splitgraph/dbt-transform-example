@@ -9,3 +9,8 @@ sources:
   schema: trase/supply-chains
   tables:
   - name: supply-chains
+- name: ltrgoddard_company_data
+  schema: ltrgoddard/uk_company_data
+  tables:
+  - name: psc
+  - name: companies

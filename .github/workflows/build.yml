@@ -19,9 +19,9 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: Run sgr cloud sync to perform the data load
       run: sgr cloud sync --remote splitgraph --use-file -f splitgraph.yml
-        -f splitgraph.credentials.yml --wait splitgraph/dbt-transform-example
+        -f splitgraph.credentials.yml --wait splitgraph/psc-normalization-test
       shell: bash
     - name: Run sgr cloud load to set up metadata
       run: sgr cloud load --remote splitgraph --skip-external -f splitgraph.yml -f
-        splitgraph.credentials.yml splitgraph/dbt-transform-example
+        splitgraph.credentials.yml splitgraph/psc-normalization-test
       shell: bash

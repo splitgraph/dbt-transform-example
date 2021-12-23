@@ -14,7 +14,10 @@ repositories:
         # Use this repository's current default branch
         git_branch: main
       is_live: false
-      tables: { }
+      tables:
+        top_exporter_metrics:
+          options: {}
+          schema: []
     metadata:
       description: Example of a dbt transform on Splitgraph Cloud with Github Actions
       readme:
@@ -25,3 +28,26 @@ repositories:
         "dbt project":
           URL: https://github.com/splitgraph/dbt-transform-example
           models: top_exporter_metrics.sql
+  - namespace: splitgraph
+    repository: psc-normalization-test
+    external:
+      plugin: dbt
+      credential: dbt-transform-example
+      params:
+        sources:
+          - dbt_source_name: ltrgoddard_company_data
+            namespace: ltrgoddard
+            repository: uk_company_data
+            hash_or_tag: latest
+        git_branch: psc-test
+      is_live: false
+      tables:
+        psc:
+          options: { }
+          schema: [ ]
+    metadata:
+      description: Example of a dbt transform on Splitgraph Cloud with Github Actions
+      extra_metadata:
+        "dbt project":
+          URL: https://github.com/splitgraph/dbt-transform-example
+          models: psc.sql
